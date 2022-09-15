@@ -1,0 +1,38 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: zro-pipeline
+spec:
+  workspaces:
+  - name: workspace
+  tasks:
+    - name: hello
+      workspaces:
+      - name: workspace
+        workspace: workspace
+      taskRef:
+        name: hello
+    - name: docker-run
+      workspaces:
+      - name: workspace
+        workspace: workspace
+      # runAfter: 
+      #   - hello
+      taskRef:
+        name: docker-run
+    - name: lint
+      workspaces:
+      - name: workspace
+        workspace: workspace
+      # runAfter: 
+      #   - hello
+      taskRef:
+        name: golang-test
+    - name: test
+      workspaces:
+      - name: workspace
+        workspace: workspace
+      # runAfter: 
+      #   - hello
+      taskRef:
+        name: golangci-lint
