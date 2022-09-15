@@ -17,6 +17,6 @@ spec:
       - name: workspace
         workspace: workspace
       runAfter: 
-        - docker-run
+        - hello
       taskRef:
         name: golang-test
