@@ -9,7 +9,7 @@ spec:
   - name: unit-test
     image: docker.io/library/golang:latest
     script: |
-      cd  workspace/workspace
+      cd  /workspace/workspace/
       go test -race -cover -v ./...
     env:
     - name: GOOS
