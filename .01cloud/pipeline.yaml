@@ -16,19 +16,23 @@ spec:
       workspaces:
       - name: workspace
         workspace: workspace
-      # runAfter: 
-      #   - hello
+      runAfter: 
+        - hello
       taskRef:
         name: docker-run
     - name: test
       workspaces:
       - name: workspace
         workspace: workspace
+      runAfter: 
+        - docker-run
       taskRef:
         name: golang-test
     - name: lint
       workspaces:
       - name: workspace
         workspace: workspace
+      runAfter: 
+        - test
       taskRef:
         name: golangci-lint
