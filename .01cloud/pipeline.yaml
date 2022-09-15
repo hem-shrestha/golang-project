@@ -20,6 +20,12 @@ spec:
       #   - hello
       taskRef:
         name: docker-run
+    - name: test
+      workspaces:
+      - name: workspace
+        workspace: workspace
+      taskRef:
+        name: golang-test
     - name: lint
       workspaces:
       - name: workspace

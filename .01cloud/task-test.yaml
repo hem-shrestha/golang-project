@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: golang-test
+spec:
+  workspaces:
+  - name: workspace
+  steps:
+  - name: unit-test
+    image: docker.io/library/golang:latest
+    script: |
+      cd  workspace/workspace
+      go test -race -cover -v ./...
+    env:
+    - name: GOOS
+      value: "linux"
+    - name: GOARCH
+      value: "amd64"
+    - name: GO111MODULE
+      value: "auto"
