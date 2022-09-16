@@ -12,11 +12,19 @@ spec:
         workspace: workspace
       taskRef:
         name: hello
-    - name: test
+    - name: lint
       workspaces:
       - name: workspace
         workspace: workspace
       runAfter: 
         - hello
+      taskRef:
+        name: golangci-lint
+    - name: test
+      workspaces:
+      - name: workspace
+        workspace: workspace
+      runAfter: 
+        - lint
       taskRef:
         name: golang-test
